@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>boot-admin</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>boot-admin</name>
+	<description>Spring Boot Admin</description>
+
+	<parent>
+		<groupId>co.uk.kuwait</groupId>
+		<artifactId>ksims</artifactId>
+		<version>0.0.2-SNAPSHOT</version>
+	</parent>
+
+	<properties>
+		<spring-boot-admin-server-version>1.5.5</spring-boot-admin-server-version>
+	</properties>
+
+	<dependencies>
+		
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-config</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-eureka</artifactId>
+		</dependency>
+
+		<dependency>
+		    <groupId>de.codecentric</groupId>
+		    <artifactId>spring-boot-admin-server</artifactId>
+		    <version>${spring-boot-admin-server-version}</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>de.codecentric</groupId>
+		    <artifactId>spring-boot-admin-server-ui</artifactId>
+		    <version>${spring-boot-admin-server-version}</version>
+		</dependency>
+
+	</dependencies>
+
+	
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<finalName>${project.artifactId}</finalName> <!-- Name for the jar -->
+				</configuration>
+			</plugin>
+			
+		</plugins>
+	</build>
+	
+
+
+</project>
