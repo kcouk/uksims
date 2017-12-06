@@ -4,7 +4,7 @@
 
 	<groupId>co.uk.kuwait</groupId>
 	<artifactId>ksims</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>ksims</name>
@@ -73,7 +73,7 @@
 	
 	<scm>
 	   <connection>smc:git:https://github.com/kcouk/uksims.git</connection>
-	   <tag>v0.0.1</tag>
+	   <tag>HEAD</tag>
   </scm>
 
 </project>
