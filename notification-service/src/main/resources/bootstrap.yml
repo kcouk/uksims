@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: notification-service
+  cloud:
+    config:
+      uri: http://${config_host:localhost}:8888 # N.B. this is the default:
+      fail-fast: true
+      retry:
+        max-attempts: 10
