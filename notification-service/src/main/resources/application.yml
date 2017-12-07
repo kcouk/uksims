@@ -1,0 +1,6 @@
+#logging:
+#  config: classpath:logback.xml
+#  file: notification-service/notification-service.log
+#  level:
+#    root: warn
+#    co.uk.kuwait: debug
