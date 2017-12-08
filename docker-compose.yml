@@ -79,6 +79,56 @@ services:
   
   
   
+
+  ####################################
+  ####         ELK STACK         ####
+  ####################################
+  
+ #** ELASTICSHEARCH **#
+  elasticsearch:
+    build: elk/elasticsearch/
+    volumes:
+      - ./elk/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
+#    networks:
+#      - elk
+
+  #** LOGSTASH **#
+  logstash:
+    build: elk/logstash/
+    volumes:
+      - ./elk/logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
+      - ./elk/logstash/pipeline:/usr/share/logstash/pipeline
+    ports:
+      - "5000:5000"
+    environment:
+      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+#    networks:
+#      - elk
+    depends_on:
+      - elasticsearch
+
+  #** KIBANA **#
+  kibana:
+    build: elk/kibana/
+    volumes:
+      - ./elk/kibana/config/:/usr/share/kibana/config
+    ports:
+      - "5601:5601"
+#    networks:
+#      - elk
+    depends_on:
+      - elasticsearch
+      
+
+  ####################################
+  ####        END ELK STACK       ####
+  ####################################
+  
       
   ####################################
   ####    NOTIFICATION SERVICE    ####
