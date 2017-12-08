@@ -3,3 +3,4 @@
 !.gitignore
 docker-data/
 .DS_Store
+target/
