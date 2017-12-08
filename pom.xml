@@ -23,7 +23,9 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
-		<spring-cloud.version>Dalston.SR4</spring-cloud.version> 
+		<spring-cloud.version>Dalston.SR4</spring-cloud.version>        
+		<docker.image.prefix>kuwaitcultural</docker.image.prefix>
+        <docker.plugin.version>1.3.6</docker.plugin.version>
 	</properties>
 	
 	<dependencies>

@@ -1,0 +1,129 @@
+version: '3.3'
+services:
+
+  ####################################
+  ####    SPRING CLOUD CONFIG     ####
+  ####################################
+
+  config:
+    build: config-service
+    image: kuwaitcultural/config-service
+    ports:
+      - 8888:8888
+    restart: always
+    container_name: config
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+
+  ####################################
+  ####  END SPRING CLOUD CONFIG   ####
+  ####################################
+
+
+  ####################################
+  ####    SPRING ADMIN SERVICE    ####
+  ####################################
+
+  boot-admin:
+    build: boot-admin
+    image: kuwaitcultural/boot-admin
+    ports:
+      - 8765:8765
+    restart: always
+    container_name: boot-admin
+    environment:
+      config_host: config
+      SPRING_PROFILES_ACTIVE: docker
+#      eureka_host: eureka-service
+    depends_on:
+      - eureka-service
+      - config
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+
+  ####################################
+  ####  END SPRING ADMIN SERVICE  ####
+  ####################################
+  
+
+  ####################################
+  ####       NETFLIX OSS          ####
+  ####################################
+ 
+  #** EUREKA **#
+  eureka-service:
+    build: eureka-service
+    image: kuwaitcultural/eureka-service
+    restart: always
+    container_name: eureka-service
+    environment:
+      config_host: config
+      SPRING_PROFILES_ACTIVE: docker
+#      - eureka_host=eureka-service
+    depends_on:
+      - config
+    ports:
+      - 8761:8761
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+
+  ####################################
+  ####      END NETFLIX OSS       ####
+  ####################################
+  
+  
+  
+      
+  ####################################
+  ####    NOTIFICATION SERVICE    ####
+  ####################################
+   
+  notification-service:
+    build: notification-service
+    image: kuwaitcultural/notification-service
+    ports:
+      - 8085:8080
+    restart: always
+    container_name: notification-service
+    environment:
+      config_host: config
+      SPRING_PROFILES_ACTIVE: docker
+#      eureka_host: eureka-service
+#      notification_db_host: db_notification
+    depends_on:
+     - config
+     - eureka-service
+     - db_notification
+        
+    volumes:
+      - ./docker-data/logs/notification-service:/var/log/notification-service
+      
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"  
+   
+  db_notification:
+    image: mysql:5.7.18
+    container_name: notification_db
+    volumes:
+      - ./docker-data/mysql:/var/lib/mysql
+    restart: always
+    ports:
+      - 3307:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: p45w0rd
+      MYSQL_DATABASE: notification
+      MYSQL_USER: ksims_db
+      MYSQL_PASSWORD: p45w0rd
+      
+  ####################################
+  ####  END  NOTIFICATION SERVICE ####
+  ####################################
+   
