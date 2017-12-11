@@ -6,3 +6,4 @@ docker-data/
 target/
 mvnw.cmd
 mvnw
+*.log
