@@ -101,6 +101,7 @@
 		<module>eureka-service</module>
 		<module>boot-admin</module>
 		<module>notification-service</module>
+		<module>client</module>
 	</modules>
 	
 	

@@ -171,6 +171,27 @@ services:
   ####################################
       
       
+        
+  client:
+    build: client
+    image: kuwaitcultural/client
+    restart: always
+    container_name: client
+    environment:
+      config_host: config
+      SPRING_PROFILES_ACTIVE: docker
+#      eureka_host: eureka-service
+    depends_on:
+     - config
+     - eureka-service
+    ports:
+      - 9999:9999
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+      
+      
       
   ####################################
   ####    NOTIFICATION SERVICE    ####
