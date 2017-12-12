@@ -4,7 +4,7 @@
 
 	<groupId>co.uk.kuwait</groupId>
 	<artifactId>hystrix-dashboard</artifactId>
-	<version>0.0.3</version>
+	<version>0.0.4-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>hystrix-dashboard</name>
@@ -13,7 +13,7 @@
 	<parent>
 		<groupId>co.uk.kuwait</groupId>
 		<artifactId>ksims</artifactId>
-		<version>0.0.3</version>
+		<version>0.0.4-SNAPSHOT</version>
 	</parent>
 
 	<dependencies>
