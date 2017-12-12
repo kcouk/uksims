@@ -4,19 +4,18 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>co.uk.kuwait</groupId>
-	<artifactId>client</artifactId>
+	<artifactId>hystrix-dashboard</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>client</name>
-	<description>Api Gateway Client</description>
+	<name>hystrix-dashboard</name>
+	<description>Hystrix Dashboard to monitor Hystrix metrics in real time</description>
 
 	<parent>
 		<groupId>co.uk.kuwait</groupId>
 		<artifactId>ksims</artifactId>
 		<version>0.0.3-SNAPSHOT</version>
 	</parent>
-
 
 	<dependencies>
 		<dependency>
@@ -25,27 +24,13 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-eureka</artifactId>
+			<artifactId>spring-cloud-starter-hystrix-dashboard</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-feign</artifactId>
-		</dependency>
-        
-        <!-- Distributed tracing system -->
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-zipkin</artifactId>
-		</dependency>
-		
-		<!-- For Microproxy (include hystrix) -->
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-zuul</artifactId>
-		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
@@ -70,7 +55,6 @@
 					<finalName>${project.artifactId}</finalName> <!-- Name for the jar -->
 				</configuration>
 			</plugin>
-			
 		</plugins>
 	</build>
 

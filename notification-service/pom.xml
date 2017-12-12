@@ -42,6 +42,12 @@
             <artifactId>spring-boot-starter-data-rest</artifactId>
         </dependency>
         
+        <!-- Distributed tracing system -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-zipkin</artifactId>
+		</dependency>
+        
         
         <dependency>
             <groupId>mysql</groupId>

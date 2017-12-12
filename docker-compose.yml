@@ -73,6 +73,47 @@ services:
         max-size: "10m"
         max-file: "10"
 
+
+  #** HYSTRIX **#
+  hystrix-dashboard:
+    build: hystrix-dashboard
+    image: johnnymerayo/hystrix-dashboard
+    restart: always
+    container_name: hystrix-dashboard
+    environment:
+      config_host: config
+      SPRING_PROFILES_ACTIVE: docker
+#      eureka_host: eureka-service
+    depends_on:
+     - config
+     - eureka-service
+    ports:
+      - 8010:8010
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+              
+  #** ZIPKIN **#
+  zipkin-service:
+    build: zipkin-service
+    image: johnnymerayo/zipkin-service
+    restart: always
+    container_name: zipkin-service
+    environment:
+      config_host: config
+      SPRING_PROFILES_ACTIVE: docker
+#      eureka_host: eureka-service
+    depends_on:
+       - config
+       - eureka-service
+    ports:
+      - 9411:9411
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+      
   ####################################
   ####      END NETFLIX OSS       ####
   ####################################

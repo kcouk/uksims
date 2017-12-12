@@ -102,6 +102,8 @@
 		<module>boot-admin</module>
 		<module>notification-service</module>
 		<module>client</module>
+		<module>zipkin-service</module>
+		<module>hystrix-dashboard</module>
 	</modules>
 	
 	

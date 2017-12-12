@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: zipkin-service
+  cloud:
+    config:
+      uri: http://${config_host:localhost}:8888 # N.B. this is the default:
+      username: ksims_cloud
+      password: fpukbwbpWTLKa9PhAquPRder
+      fail-fast: true
+      retry:
+        max-attempts: 10
+      
