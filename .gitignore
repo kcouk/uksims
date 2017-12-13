@@ -17,3 +17,4 @@ mvnw
 .project
 .settings
 .springBeans
+.DS_Store
