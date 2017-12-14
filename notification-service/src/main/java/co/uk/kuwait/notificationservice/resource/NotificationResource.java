@@ -54,21 +54,17 @@ public class NotificationResource {
 	// @GetMapping("/update/{id}/{name}")
 	// public Notification update(@PathVariable("id") final Integer id, @PathVariable("name")
 	// final String name) {
-	//
-	//
 	// Notification notifications = getId(id);
 	// notifications.setName(name);
-	//
 	// return notificationRepository.save(notifications);
 	// }
 
 
 
 	@GetMapping("/allHATEOAS")
-	public @ResponseBody ResponseEntity<?> getAllHATEOAS() {
+	public @ResponseBody ResponseEntity<Resources<Notification>> getAllHATEOAS() {
 
 		List<Notification> notifications = this.notificationRepository.findAll();
-
 		Resources<Notification> resources = new Resources<>(notifications);
 
 		return ResponseEntity.ok(resources);
