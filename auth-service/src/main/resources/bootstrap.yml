@@ -1,9 +1,6 @@
-server:
-  port: 8043
-
 spring:
   application:
-    name: auth-server
+    name: auth-service
   cloud:
     config:
       uri: http://${config_host:localhost}:8888 # N.B. this is the default:
