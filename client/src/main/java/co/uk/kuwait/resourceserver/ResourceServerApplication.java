@@ -1,8 +1,9 @@
-package co.uk.kuwait.client;
+package co.uk.kuwait.resourceserver;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
@@ -12,15 +13,16 @@ import org.springframework.web.bind.annotation.RestController;
 @EnableZuulProxy // Busca en eureka y mapea por nombre del servicio
 @EnableDiscoveryClient
 @SpringBootApplication
-public class ClientApplication {
+public class ResourceServerApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ClientApplication.class, args);
+		SpringApplication.run(ResourceServerApplication.class, args);
 	}
+
 }
 
 
-//Test to check remote Cloud Config
+// Test to check remote Cloud Config
 @RefreshScope
 @RestController
 class MessageRestController {
