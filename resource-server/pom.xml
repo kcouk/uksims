@@ -3,12 +3,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>co.uk.kuwait</groupId>
-	<artifactId>client</artifactId>
+	<artifactId>resource-server</artifactId>
 	<version>0.0.4-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>client</name>
-	<description>Api Gateway Client</description>
+	<name>resource-server</name>
+	<description>Resource Server - Api Gateway</description>
 
 	<parent>
 		<groupId>co.uk.kuwait</groupId>
@@ -16,7 +16,11 @@
 		<version>0.0.4-SNAPSHOT</version>
 	</parent>
 
-
+	<properties>
+		<!-- util -->
+		<commons-lang3.version>3.4</commons-lang3.version>
+	</properties>
+	
 	<dependencies>
 	
 		<!-- Cloud based configuration -->
@@ -73,6 +77,16 @@
         </dependency>
 	
 		<!-- end Enable resoure server -->
+	
+        
+        
+        		<!-- Used for - randomAlphabetic() -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>${commons-lang3.version}</version>
+		</dependency>
+		
 		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

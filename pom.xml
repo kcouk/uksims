@@ -99,10 +99,11 @@
 	<modules>
 		<module>config-service</module>
 		<module>eureka-service</module>
-		<module>boot-admin</module>
-		<module>notification-service</module>
-		<module>client</module>
 		<module>zipkin-service</module>
+		<module>boot-admin</module>
+		<module>auth-service</module>
+		<module>resource-server</module>
+		<module>notification-service</module>
 		<module>hystrix-dashboard</module>
 	</modules>
 	
