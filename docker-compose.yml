@@ -215,12 +215,17 @@ services:
   ####################################
       
       
-        
-  client:
-    build: client
-    image: kuwaitcultural/client
+      
+      
+  ####################################
+  ####            OAUTH2          ####
+  ####################################
+              
+  auth-service:
+    build: auth-service
+    image: kuwaitcultural/auth-service
     restart: always
-    container_name: client
+    container_name: auth-service
     environment:
       config_host: config
       SPRING_PROFILES_ACTIVE: docker
@@ -228,6 +233,27 @@ services:
     depends_on:
      - config
      - eureka-service
+     - db_oauth2
+    ports:
+      - 8043:8043
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"        
+        
+  resource-server:
+    build: resource-server
+    image: kuwaitcultural/resource-server
+    restart: always
+    container_name: resource-server
+    environment:
+      config_host: config
+      SPRING_PROFILES_ACTIVE: docker
+#      eureka_host: eureka-service
+    depends_on:
+     - config
+     - eureka-service
+     - db_oauth2
     ports:
       - 9999:9999
     logging:
@@ -236,7 +262,41 @@ services:
         max-file: "10"
       
       
+  db_oauth2:
+    image: mysql:5.7.18
+    container_name: db_oauth2
+    volumes:
+      - ./docker-data/mysql/oauth2_db:/var/lib/mysql
+    restart: always
+    ports:
+      - 3308:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: p45w0rd
+      MYSQL_DATABASE: oauth2
+      MYSQL_USER: ksims_db
+      MYSQL_PASSWORD: p45w0rd
       
+      
+      
+  db_user:
+    image: mysql:5.7.18
+    container_name: db_user
+    volumes:
+      - ./docker-data/mysql/db_user:/var/lib/mysql
+    restart: always
+    ports:
+      - 3309:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: p45w0rd
+      MYSQL_DATABASE: db_user
+      MYSQL_USER: ksims_db
+      MYSQL_PASSWORD: p45w0rd
+      
+      
+  ####################################
+  ####       END  OAUTH2          ####
+  ####################################
+        
   ####################################
   ####    NOTIFICATION SERVICE    ####
   ####################################
@@ -270,7 +330,7 @@ services:
     image: mysql:5.7.18
     container_name: notification_db
     volumes:
-      - ./docker-data/mysql:/var/lib/mysql
+      - ./docker-data/mysql/notification_db:/var/lib/mysql
     restart: always
     ports:
       - 3307:3306
