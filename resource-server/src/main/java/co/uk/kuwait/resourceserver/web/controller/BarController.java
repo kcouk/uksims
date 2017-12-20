@@ -33,8 +33,6 @@ public class BarController {
 	public Bar findById(@PathVariable final long id, Principal principal) {
 		log.info(principal.getName());
 
-
-
 		return new Bar(Long.parseLong(randomNumeric(2)), randomAlphabetic(4));
 	}
 

@@ -37,10 +37,8 @@ public class FooController {
 		log.info(authentication.getName());
 		log.info(authentication.getAuthorities().toString());
 
-		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		final UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 		log.info("User has authorities: " + userDetails.getAuthorities());
-
-
 
 		return new Foo(Long.parseLong(randomNumeric(2)), randomAlphabetic(4));
 	}
