@@ -234,6 +234,7 @@ services:
      - config
      - eureka-service
      - db_oauth2
+     - db_user
     ports:
       - 8043:8043
     logging:
@@ -296,6 +297,45 @@ services:
   ####################################
   ####       END  OAUTH2          ####
   ####################################
+  
+  
+  
+  ####################################
+  ####        USER SERVICE        ####
+  ####################################
+  
+  user-service:
+    build: user-service
+    image: kuwaitcultural/user-service
+    ports:
+      - 8082:8082
+    restart: always
+    container_name: user-service
+    environment:
+      config_host: config
+      SPRING_PROFILES_ACTIVE: docker
+#      eureka_host: eureka-service
+#      user_db_host: db_user
+    depends_on:
+     - config
+     - eureka-service
+     - db_user
+        
+    volumes:
+      - ./docker-data/logs/user-service:/var/log/user-service
+      
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"  
+   
+  ####################################
+  ####    END   USER   SERVICE    ####
+  ####################################
+  
+  
+  
+  
         
   ####################################
   ####    NOTIFICATION SERVICE    ####

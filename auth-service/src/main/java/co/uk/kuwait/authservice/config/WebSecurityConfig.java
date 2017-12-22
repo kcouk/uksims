@@ -16,16 +16,13 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-import lombok.extern.slf4j.Slf4j;
-
 @Configuration
 @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
-@Slf4j
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	private static String USERS_QUERY = "select username,password, enabled from user where username=?";
-	private static String ROLES_QUERY =
-			"select u.username, r.rolName  from user u, rol r, rolForuser rfu where u.idUser = rfu.idUser and rfu.idRol = r.idRol and u.username = ? ";
+	private static final String USERS_QUERY = "select username,password, enabled from Users where username=?";
+	private static final String ROLES_QUERY =
+			"select u.username, r.authority  from Users u, Authority r, Users_Authority rfu where u.id = rfu.users_id and rfu.authorities_id = r.id and u.username = ? ";
 
 	@Value("${auth-db.datasource.url}")
 	private String url;

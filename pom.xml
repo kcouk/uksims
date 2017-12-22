@@ -104,6 +104,7 @@
 		<module>auth-service</module>
 		<module>resource-server</module>
 		<module>notification-service</module>
+		<module>user-service</module>
 		<module>hystrix-dashboard</module>
 	</modules>
 	

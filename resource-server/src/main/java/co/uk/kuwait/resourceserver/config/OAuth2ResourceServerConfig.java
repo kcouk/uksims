@@ -36,8 +36,9 @@ public class OAuth2ResourceServerConfig extends ResourceServerConfigurerAdapter 
         .requestMatchers()
         .and()
         .authorizeRequests()
+        .antMatchers("/**").permitAll()
         .antMatchers("/actuator/**", "/api-docs/**").permitAll()
-        .antMatchers("/notification-service/**").hasAnyAuthority("ADMIN","ADMINISTRATOR","ROLE_ADMIN","ROLE_ADMINISTRATOR")
+        .antMatchers("/notification-service/**", "/user-service/**").hasAnyAuthority("ADMIN","ADMINISTRATOR","ROLE_ADMIN","ROLE_ADMINISTRATOR")
         .antMatchers("/gateway/**" ).authenticated();
 
 	// @formatter:on
